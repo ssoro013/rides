@@ -1,18 +1,11 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React from 'react';
+import React, {Component} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
   Text,
+  TextInput,
   StatusBar,
 } from 'react-native';
 
@@ -24,14 +17,16 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const App: () => React$Node = () => {
-  return (
-    <>
+class App extends Component {
+  render() {
+    return (
+      <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
+            <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}><Text>Welcome to Ride's</Text></View>
           <Header />
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
@@ -68,9 +63,10 @@ const App: () => React$Node = () => {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </>
-  );
-};
+      </>
+    )
+  }
+}
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -109,6 +105,10 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
+  textInput: {
+    height: 40,
+    width: 10
+  }
 });
 
 export default App;
