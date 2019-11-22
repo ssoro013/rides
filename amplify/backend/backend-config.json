@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"ridesa5e6fdbf": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}

@@ -26,7 +26,6 @@ class App extends Component {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-            <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}><Text>Welcome to Ride's</Text></View>
           <Header />
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
