@@ -17,6 +17,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import Loading from './components/screens/Loading'
+
 class App extends Component {
   render() {
     return (
@@ -26,7 +28,10 @@ class App extends Component {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />
+            <View>
+              <Loading />
+            </View>
+          {/* <Header />
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
               <Text style={styles.footer}>Engine: Hermes</Text>
@@ -59,7 +64,7 @@ class App extends Component {
               </Text>
             </View>
             <LearnMoreLinks />
-          </View>
+          </View> */}
         </ScrollView>
       </SafeAreaView>
       </>
