@@ -74,7 +74,7 @@ const Navigator = createSwitchNavigator(
   Authentication: AuthNavigator,
   // Application: AppDrawerNavigator
   },
-  {initialRouteName: "Authentication"}
+  {initialRouteName: "Loading"}
 );
 
 export default createAppContainer(Navigator);
