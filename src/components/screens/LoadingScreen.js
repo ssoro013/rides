@@ -15,7 +15,8 @@ class LoadingScreen extends Component {
 
     loadApp = async () => {
         const userToken = await AsyncStorage.getItem('userToken')
-        this.props.navigation.navigate(userToken ? 'App' : 'Authentication')
+        console.log(userToken)
+        this.props.navigation.navigate(userToken ? 'Application' : 'Authentication')
     }
 
     render () {
@@ -33,6 +34,15 @@ const styles = StyleSheet.create({
         backgroundColor: "#f5f5f5",
         alignItems: "center",
         justifyContent: "center"
+    },
+    button: {
+        padding: 20
+    },
+
+    text: {
+        fontSize: 20,
+        fontWeight: "bold",
+        padding: 10
     }
 });
 

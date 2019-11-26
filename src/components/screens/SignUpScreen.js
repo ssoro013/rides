@@ -20,6 +20,15 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "center"
+    },
+    button: {
+        padding: 20
+    },
+
+    text: {
+        fontSize: 20,
+        fontWeight: "bold",
+        padding: 10
     }
 });
 

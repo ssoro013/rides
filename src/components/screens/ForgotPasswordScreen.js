@@ -8,7 +8,7 @@ class ForgotPasswordScreen extends Component {
     render() {
         return (
             <View style = {styles.container}>
-                <Text>Reset your password</Text>
+                <Text style={styles.text}>Reset your password</Text>
             </View>
         )
     }
@@ -20,6 +20,15 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "center"
+    },
+    button: {
+        padding: 20
+    },
+
+    text: {
+        fontSize: 20,
+        fontWeight: "bold",
+        padding: 10
     }
 });
 
