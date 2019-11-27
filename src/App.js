@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
@@ -44,7 +44,8 @@ const AppStackNavigator = createStackNavigator({
       headerLeft: (
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
           <View style={{paddingHorizontal: 10}}>
-            <Icon name="ios-menu" size={24} />
+            {/* <Icon name="rocket" size={24} /> */}
+            <Text>Menu</Text>
           </View>
         </TouchableOpacity>
       )
