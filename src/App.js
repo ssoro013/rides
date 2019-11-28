@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Text, View } from 'react-native';
 
-// import Icon from 'react-native-vector-icons';
+import { Icon }  from 'react-native-elements';
 
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
@@ -45,6 +45,7 @@ const AppStackNavigator = createStackNavigator({
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
           <View style={{paddingHorizontal: 10}}>
             {/* <Icon name="menu" size={24} /> */}
+            {/* <Icon reverse name='ios-american-football' type='ionicon' color='#517fa4'/> */}
             <Text>Menu</Text>
           </View>
         </TouchableOpacity>
