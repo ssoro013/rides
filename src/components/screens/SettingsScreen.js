@@ -3,6 +3,8 @@ import {
     StyleSheet, View, Text
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/FontAwesome'
+
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -18,7 +20,8 @@ class SettingsScreen extends Component {
                 <TouchableOpacity
                     onPress={() => this.signOut()} 
                     style={styles.button}>
-                    <Text style={styles.text}>Sign Out</Text>
+                    {/* <Text style={styles.text}>Sign Out</Text> */}
+                    <Icon name="sign-out" size={50}/>
                 </TouchableOpacity>
             </View>
         )

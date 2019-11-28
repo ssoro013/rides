@@ -66,7 +66,7 @@ const AuthNavigator = createStackNavigator({
   Welcome: {
     screen: WelcomeScreen,
     navigationOptions: () => ({
-      title: `Welcome to Ride's`,
+      title: `Ride's`,
       headerBackTitle: 'Back'
     }),
   },
@@ -96,7 +96,6 @@ const AuthNavigator = createStackNavigator({
   },
 
 });
-
 
 const Navigator = createSwitchNavigator(
   {Loading: LoadingScreen,
