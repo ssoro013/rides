@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 import { Text, View } from 'react-native';
 
-import { Icon }  from 'react-native-elements';
-
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import { createStackNavigator } from 'react-navigation-stack';
 
@@ -34,7 +34,7 @@ const AppTabNavigator = createBottomTabNavigator({
   Settings: {
     screen: SettingsScreen
   }
-})
+});
 
 //Application Navigator
 const AppStackNavigator = createStackNavigator({
@@ -44,9 +44,7 @@ const AppStackNavigator = createStackNavigator({
       headerLeft: (
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
           <View style={{paddingHorizontal: 10}}>
-            {/* <Icon name="menu" size={24} /> */}
-            {/* <Icon reverse name='ios-american-football' type='ionicon' color='#517fa4'/> */}
-            <Text>Menu</Text>
+            <Icon name="ios-menu" size={25}/>
           </View>
         </TouchableOpacity>
       )
@@ -60,7 +58,7 @@ const AppDrawerNavigator = createDrawerNavigator({
   Home: HomeScreen,
   Profile: ProfileScreen,
   Settings: SettingsScreen
-})
+});
 
 // Authentication Navigator
 const AuthNavigator = createStackNavigator({

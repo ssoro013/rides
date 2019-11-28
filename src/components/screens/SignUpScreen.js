@@ -8,7 +8,7 @@ class SignUpScreen extends Component {
     render() {
         return (
             <View style = {styles.container}>
-                <Text>Sign Up</Text>
+                <Text style={styles.text}>Sign Up</Text>
             </View>
         )
     }
