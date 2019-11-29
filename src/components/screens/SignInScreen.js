@@ -48,7 +48,7 @@ class SignInScreen extends Component {
                 <View style={styles.container}>
                   <Container style={styles.infoContainer}>
                     <View style={styles.container}>
-                      <Item rounded style={styles.itemStyle}>
+                      <Item style={styles.itemStyle}>
                         <Icon
                           active
                           name='person'
@@ -66,7 +66,7 @@ class SignInScreen extends Component {
                           onChangeText={value => this.onChangeText('username', value)}
                         />
                       </Item>
-                      <Item rounded style={styles.itemStyle}>
+                      <Item style={styles.itemStyle}>
                         <Icon
                           active
                           name='lock'

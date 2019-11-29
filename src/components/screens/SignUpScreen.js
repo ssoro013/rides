@@ -121,7 +121,7 @@ class SignUpScreen extends Component {
                         />
                         <Input
                           style={styles.input}
-                          placeholder='+44766554433'
+                          placeholder='+1(XXX)-XXX-XXXX'
                           placeholderTextColor='#adb4bc'
                           keyboardType={'phone-pad'}
                           returnKeyType='done'
