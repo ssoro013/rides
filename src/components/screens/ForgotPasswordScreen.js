@@ -10,7 +10,8 @@ import {
     KeyboardAvoidingView,
     Keyboard,
     Alert,
-    Animated
+    Animated,
+    Image
 } from 'react-native';
 
 import {
@@ -20,11 +21,47 @@ import {
     Icon
 } from 'native-base';
 
+const logo = require('../images/rides.png')
+
 class ForgotPasswordScreen extends Component {
-    state = {
-        username: '',
-        authCode: '',
-        newPassword: ''
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      authCode: '',
+      newPassword: '',
+      fadeIn: new Animated.Value(0),
+      fadeOut: new Animated.Value(1),
+      isHidden: false
+    }
+  }
+
+    componentDidMount() {
+      this.fadeIn()
+    }
+
+    fadeIn() {
+      Animated.timing(
+      this.state.fadeIn,
+      {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true
+      }
+      ).start()
+      this.setState({isHidden: true})
+    }
+
+    fadeOut() {
+      Animated.timing(
+      this.state.fadeOut,
+      {
+        toValue: 0,
+        duration: 700,
+        useNativeDriver: true
+      }
+      ).start()
+      this.setState({isHidden: false})
     }
 
     onChangeText(key, value) {
@@ -33,6 +70,7 @@ class ForgotPasswordScreen extends Component {
         })
     }
     render() {
+      var { fadeIn, fadeOut, isHidden } = this.state
         return (
           <SafeAreaView style={styles.container}>
             <StatusBar/>
@@ -43,7 +81,14 @@ class ForgotPasswordScreen extends Component {
               keyboardVerticalOffset={23}>
               <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
-                  {/* Infos */}
+                  <View style={styles.container}>
+                    {
+                      isHidden?
+                      <Animated.Image source={logo} style={{opacity: fadeIn}}/>
+                      :
+                      <Animated.Image source={logo} style={{opacity: fadeOut}} />
+                    }
+                  </View>
                   <Container style={styles.infoContainer}>
                     <View style={styles.container}>
                       {/* Username */}
@@ -124,62 +169,63 @@ class ForgotPasswordScreen extends Component {
         );
     }
 }
-
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: "#f5f5f5",
-      justifyContent: 'center',
-      flexDirection: 'column'
-    },
-    input: {
-      flex: 1,
-      fontSize: 17,
-      fontWeight: 'bold',
-      color: "#696969",
-    },
-    infoContainer: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      height: 200,
-      bottom: 100,
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingHorizontal: 30,
-      backgroundColor: "#f5f5f5",
-    },
-    itemStyle: {
-      marginBottom: 20,
-    },
-    iconStyle: {
-      color: "#696969",
-      fontSize: 28,
-      marginLeft: 15
-    },
-    buttonStyle: {
-      alignItems: 'center',
-      backgroundColor: '#a9a9a9',
-      padding: 14,
-      marginBottom: 20,
-      borderRadius: 24,
-    },
-    buttonText: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      color: "#696969",
-    },
-    logoContainer: {
-      position: 'absolute',
-      left: 0,
-      right: 0,
-      height: 400,
-      bottom: 180,
-      alignItems: 'center',
-      justifyContent: 'center',
-      flex: 1,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: "#f5f5f5",
+    justifyContent: 'center',
+    flexDirection: 'column'
+  },
+  input: {
+    flex: 1,
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: "#696969",
+  },
+  infoContainer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    height: 200,
+    bottom: 100,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 30,
+    backgroundColor: "#f5f5f5",
+  },
+  itemStyle: {
+    marginBottom: 5,
+    height: 40
+  },
+  iconStyle: {
+    color: "#696969",
+    fontSize: 28,
+    marginLeft: 15
+  },
+  buttonStyle: {
+    alignItems: 'center',
+    backgroundColor: '#a9a9a9',
+    padding: 10,
+    marginBottom: 5,
+    borderRadius: 10,
+    height: 40
+  },
+  buttonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: "#696969",
+  },
+  logoContainer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    height: 400,
+    bottom: 180,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
 })
 
 export default ForgotPasswordScreen;

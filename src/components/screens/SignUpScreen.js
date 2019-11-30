@@ -12,7 +12,8 @@ import {
     Alert,
     Modal,
     FlatList,
-    Animated
+    Animated,
+    Image
 } from 'react-native';
 
 import {
@@ -22,24 +23,57 @@ import {
     Icon
 } from 'native-base'
 
+const logo = require('../images/rides.png')
+
 class SignUpScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            email: '',
-            password: '',
-            phoneNumber: '',
-            authCode: ''
+          firstName: '',
+          lastName: '',
+          username: '',
+          email: '',
+          password: '',
+          phoneNumber: '',
+          authCode: '',
+          fadeIn: new Animated.Value(0),
+          fadeOut: new Animated.Value(1),
+          isHidden: false
         }
     }
 
+    componentDidMount() {
+      this.fadeIn()
+    }
+    fadeIn() {
+      Animated.timing(
+      this.state.fadeIn,
+      {
+        toValue: 1,
+        duration: 1000,
+        useNativeDriver: true
+      }
+      ).start()
+      this.setState({isHidden: true})
+    }
+    fadeOut() {
+      Animated.timing(
+      this.state.fadeOut,
+      {
+        toValue: 0,
+        duration: 700,
+        useNativeDriver: true
+      }
+      ).start()
+      this.setState({isHidden: false})
+    }
     onChangeText (key, value) {
         this.setState({
             [key] : value
         })
     }
     render() {
+      var { fadeIn, fadeOut, isHidden } = this.state
         return (
           <SafeAreaView style={styles.container}>
             <StatusBar/>
@@ -49,9 +83,55 @@ class SignUpScreen extends Component {
               enabled>
               <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
                 <View style={styles.container}>
+                  <View style={styles.container}>
+                    {
+                      isHidden? 
+                      <Animated.Image source={logo} style={{opacity: fadeIn, width: 110.46, height: 117}} />
+                      :
+                      <Animated.Image source={logo} style={{opacity: fadeOut, width: 110.46, height: 117}}/>
+                    }
+                  </View>
                   <Container style={styles.infoContainer}>
                     <View style={styles.container}>
-                      {/* username section  */}
+                      {/* First Name */}
+                      <Item style={styles.itemStyle}>
+                        <Icon
+                          active
+                          name='person'
+                          style={styles.iconStyle}
+                        />
+                        <Input
+                          style={styles.input}
+                          placeholder='First Name'
+                          placeholderTextColor='#adb4bc'
+                          keyboardType={'default'}
+                          returnKeyType='next'
+                          autoCapitalize='none'
+                          autoCorrect={false}
+                          onSubmitEditing={(event) => {this.refs.SecondInput._root.focus()}}
+                          onChangeText={value => this.onChangeText('firstName', value)}
+                        />
+                      </Item>
+                      {/* Last Name */}
+                      <Item style={styles.itemStyle}>
+                        <Icon
+                          active
+                          name='person'
+                          style={styles.iconStyle}
+                        />
+                        <Input
+                          style={styles.input}
+                          placeholder='Last Name'
+                          placeholderTextColor='#adb4bc'
+                          keyboardType={'default'}
+                          returnKeyType='next'
+                          autoCapitalize='none'
+                          autoCorrect={false}
+                          onSubmitEditing={(event) => {this.refs.SecondInput._root.focus()}}
+                          onChangeText={value => this.onChangeText('lastName', value)}
+                        />
+                      </Item>
+                      {/* Username */}
                       <Item style={styles.itemStyle}>
                         <Icon
                           active
@@ -70,28 +150,7 @@ class SignUpScreen extends Component {
                           onChangeText={value => this.onChangeText('username', value)}
                         />
                       </Item>
-                      {/*  password section  */}
-                      <Item style={styles.itemStyle}>
-                        <Icon
-                          active
-                          name='lock'
-                          style={styles.iconStyle}
-                        />
-                        <Input
-                          style={styles.input}
-                          placeholder='Password'
-                          placeholderTextColor='#adb4bc'
-                          returnKeyType='next'
-                          autoCapitalize='none'
-                          autoCorrect={false}
-                          secureTextEntry={true}
-                          // ref={c => this.SecondInput = c}
-                          ref='SecondInput'
-                          onSubmitEditing={(event) => {this.refs.ThirdInput._root.focus()}}
-                          onChangeText={value => this.onChangeText('password', value)}
-                        />
-                      </Item>
-                      {/* email section */}
+                      {/* Email */}
                       <Item style={styles.itemStyle}>
                         <Icon
                           active
@@ -112,7 +171,28 @@ class SignUpScreen extends Component {
                           onChangeText={value => this.onChangeText('email', value)}
                         />
                       </Item>
-                      {/* phone section  */}
+                      {/* Password */}
+                      <Item style={styles.itemStyle}>
+                        <Icon
+                          active
+                          name='lock'
+                          style={styles.iconStyle}
+                        />
+                        <Input
+                          style={styles.input}
+                          placeholder='Password'
+                          placeholderTextColor='#adb4bc'
+                          returnKeyType='next'
+                          autoCapitalize='none'
+                          autoCorrect={false}
+                          secureTextEntry={true}
+                          // ref={c => this.SecondInput = c}
+                          ref='SecondInput'
+                          onSubmitEditing={(event) => {this.refs.ThirdInput._root.focus()}}
+                          onChangeText={value => this.onChangeText('password', value)}
+                        />
+                      </Item>
+                      {/* Phone Number */}
                       <Item style={styles.itemStyle}>
                         <Icon
                           active
@@ -133,14 +213,14 @@ class SignUpScreen extends Component {
                           onChangeText={(val) => this.onChangeText('phoneNumber', val)}
                         />
                       </Item>
-                      {/* End of phone input */}
+                      {/* Sign Up */}
                       <TouchableOpacity
                         style={styles.buttonStyle}>
                         <Text style={styles.buttonText}>
                           Sign Up
                         </Text>
                       </TouchableOpacity>
-                      {/* code confirmation section  */}
+                      {/* Confirmation Code  */}
                       <Item style={styles.itemStyle}>
                         <Icon
                           active
@@ -190,7 +270,7 @@ const styles = StyleSheet.create({
     },
     input: {
       flex: 1,
-      fontSize: 17,
+      fontSize: 15,
       fontWeight: 'bold',
       color: "#696969",
     },
@@ -198,7 +278,7 @@ const styles = StyleSheet.create({
       position: 'absolute',
       left: 0,
       right: 0,
-      height: 200,
+      height: 400,
       bottom: 100,
       flexDirection: 'row',
       justifyContent: 'center',
@@ -207,7 +287,8 @@ const styles = StyleSheet.create({
       backgroundColor: "#f5f5f5",
     },
     itemStyle: {
-      marginBottom: 20,
+      marginBottom: 5,
+      height: 40
     },
     iconStyle: {
       color: "#696969",
@@ -217,9 +298,10 @@ const styles = StyleSheet.create({
     buttonStyle: {
       alignItems: 'center',
       backgroundColor: '#a9a9a9',
-      padding: 14,
-      marginBottom: 20,
-      borderRadius: 24,
+      padding: 10,
+      marginBottom: 5,
+      borderRadius: 10,
+      height: 40
     },
     buttonText: {
       fontSize: 18,
