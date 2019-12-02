@@ -36,9 +36,8 @@ class SignInScreen extends Component {
       fadeOut: new Animated.Value(0),
       isHidden: false
     }
-
-    this.fadeIn = this.fadeIn.bind(this);
-    this.fadeOut = this.fadeOut.bind(this);
+    // this.fadeIn = this.fadeIn.bind(this);
+    // this.fadeOut = this.fadeOut.bind(this);
   }
     componentDidMount() {
       this.fadeIn()
